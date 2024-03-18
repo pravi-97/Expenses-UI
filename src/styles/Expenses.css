@@ -1,0 +1,19 @@
+.no-border {
+    border: none;
+}
+
+table{
+    width: 100%;
+    text-align: center;
+}
+td,th{
+    padding: 5px 10px 5px 10px;
+}
+hr{
+    width: 100%;
+}
+tr {
+    border-bottom: 1px solid;
+    border-width: 200%;
+    border-radius: 0%;
+}
