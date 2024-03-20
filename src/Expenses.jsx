@@ -23,22 +23,24 @@ const Expenses = () => {
     axios
       .put(API_URL + `?id=${index}&field=${field}&value=${event.target.value}`)
       .then((response) => {
-        displayMessage("OK");
+        // displayMessage("OK");
       })
       .catch((error) => {
         displayMessage(error);
       });
   };
   const deleteRecord = (index) => (event) => {
-    setExpenseList((prevState) => prevState.filter((_, i) => i !== index));
-    axios
-      .delete(API_URL + index)
-      .then((response) => {
-        displayMessage("OK");
-      })
-      .catch((error) => {
-        displayMessage(error);
-      });
+    if(confirm("Are you sure you want to delete this record")){
+      setExpenseList((prevState) => prevState.filter((_, i) => i !== index));
+      axios
+        .delete(API_URL + index)
+        .then((response) => {
+          // displayMessage("OK");
+        })
+        .catch((error) => {
+          displayMessage(error);
+        });
+    }
 
   };
   useEffect(() => {
@@ -84,8 +86,8 @@ const Expenses = () => {
                     className="no-border"
                     type="date"
                     value={expense.date}
-                    onChange={handleChange(index, "date")}
-                    onBlur={saveChange(index, "date")}
+                    onChange={handleChange(expense.id, "date")}
+                    onBlur={saveChange(expense.id, "date")}
                   />
                 </td>
                 <td>
@@ -93,8 +95,8 @@ const Expenses = () => {
                     className="no-border"
                     type="text"
                     value={expense.type}
-                    onChange={handleChange(index, "type")}
-                    onBlur={saveChange(index, "type")}
+                    onChange={handleChange(expense.id, "type")}
+                    onBlur={saveChange(expense.id, "type")}
                   />
                 </td>
                 <td>
@@ -102,8 +104,8 @@ const Expenses = () => {
                     className="no-border"
                     type="text"
                     value={expense.remarks}
-                    onChange={handleChange(index, "remarks")}
-                    onBlur={saveChange(index, "remarks")}
+                    onChange={handleChange(expense.id, "remarks")}
+                    onBlur={saveChange(expense.id, "remarks")}
                   />
                 </td>
                 <td>
@@ -111,15 +113,16 @@ const Expenses = () => {
                     className="no-border"
                     type="number"
                     value={expense.price}
-                    onChange={handleChange(index, "price")}
-                    onBlur={saveChange(index, "price")}
+                    onChange={handleChange(expense.id, "price")}
+                    onBlur={saveChange(expense.id, "price")}
                   />
                 </td>
                 <td>
                   <input
+                    id="delete-button"
                     type="button"
                     value="Delete"
-                    onClick={deleteRecord(index)}
+                    onClick={deleteRecord(expense.id)}
                   />
                 </td>
               </tr>

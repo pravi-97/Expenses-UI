@@ -17,3 +17,21 @@ tr {
     border-width: 200%;
     border-radius: 0%;
 }
+
+td>input{
+    /* background-color: red; */
+}
+tr:hover td>input, tr:hover{
+    background-color: aqua;
+}
+tr:focus-within td>input, tr:focus-within{
+    background-color: aqua;
+}
+
+tr td>input:focus-within{
+    background-color: red;
+}
+
+thead tr{
+    background-color: white !important;
+}
