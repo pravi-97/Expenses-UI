@@ -1,37 +1,59 @@
 .no-border {
     border: none;
 }
-
+*{
+    color: white;
+}
 table{
     width: 100%;
     text-align: center;
 }
 td,th{
     padding: 5px 10px 5px 10px;
-}
-hr{
-    width: 100%;
+    background-color: transparent;
 }
 tr {
-    border-bottom: 1px solid;
+    /* border-bottom: 1px solid; */
     border-width: 200%;
     border-radius: 0%;
 }
-
-td>input{
+tr, tr td>input, tr{
+    background-color: transparent;
+}
+td{
     /* background-color: red; */
+    padding: 0;
+    margin: 0;
 }
-tr:hover td>input, tr:hover{
-    background-color: aqua;
+tr:hover td>input, tr:hover,tr:hover td {
+    background-color: rgb(255, 255, 255);
+    color: black;
 }
-tr:focus-within td>input, tr:focus-within{
-    background-color: aqua;
+/* tr:focus-within td>input, tr:focus-within{
+    background-color: rgb(255, 255, 255);
+} */
+tr td>input{
+    border: none;
 }
-
 tr td>input:focus-within{
-    background-color: red;
+    background-color: rgb(255, 255, 255);
+    color: black;
 }
-
-thead tr{
-    background-color: white !important;
+input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+}
+tr:hover input[type="date"]::-webkit-calendar-picker-indicator{
+    filter: invert(0);
+}
+#delete-button{
+    text-align: center;
+    background-color: red;
+    border-radius: 7px 0 0 7px;;
+    border-color: black;
+    color: white;
+    transition: 0.5s;
+    filter: brightness(0.3);
+}
+#delete-button:hover{
+    filter: brightness(1);
 }

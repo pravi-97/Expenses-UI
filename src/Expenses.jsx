@@ -3,7 +3,7 @@ import axios from "axios";
 import Loader from "./Loader";
 import "./styles/Expenses.css";
 
-const API_URL = "http://127.0.0.1:3000/";
+const API_URL = "http://127.1.1.0:3000/";
 const Expenses = () => {
   const [expenseList, setExpenseList] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -47,6 +47,8 @@ const Expenses = () => {
     axios
       .get(API_URL)
       .then((response) => {
+        console.log(response.data);
+        // setExpenseList(response.data.rows);
         setExpenseList(response.data);
         setLoading(false);
       })
@@ -86,8 +88,10 @@ const Expenses = () => {
                     className="no-border"
                     type="date"
                     value={expense.date}
-                    onChange={handleChange(expense.id, "date")}
-                    onBlur={saveChange(expense.id, "date")}
+                    // onChange={handleChange(expense.id, "date")}
+                    // onBlur={saveChange(expense.id, "date")}
+                    onChange={handleChange(index, "date")}
+                    onBlur={saveChange(index, "date")}
                   />
                 </td>
                 <td>
@@ -95,8 +99,10 @@ const Expenses = () => {
                     className="no-border"
                     type="text"
                     value={expense.type}
-                    onChange={handleChange(expense.id, "type")}
-                    onBlur={saveChange(expense.id, "type")}
+                    // onChange={handleChange(expense.id, "type")}
+                    // onBlur={saveChange(expense.id, "type")}
+                    onChange={handleChange(index, "type")}
+                    onBlur={saveChange(index, "type")}
                   />
                 </td>
                 <td>
@@ -104,8 +110,10 @@ const Expenses = () => {
                     className="no-border"
                     type="text"
                     value={expense.remarks}
-                    onChange={handleChange(expense.id, "remarks")}
-                    onBlur={saveChange(expense.id, "remarks")}
+                    // onChange={handleChange(expense.id, "remarks")}
+                    // onBlur={saveChange(expense.id, "remarks")}
+                    onChange={handleChange(index, "remarks")}
+                    onBlur={saveChange(index, "remarks")}
                   />
                 </td>
                 <td>
@@ -113,8 +121,10 @@ const Expenses = () => {
                     className="no-border"
                     type="number"
                     value={expense.price}
-                    onChange={handleChange(expense.id, "price")}
-                    onBlur={saveChange(expense.id, "price")}
+                    // onChange={handleChange(expense.id, "price")}
+                    // onBlur={saveChange(expense.id, "price")}
+                    onChange={handleChange(index, "price")}
+                    onBlur={saveChange(index, "price")}
                   />
                 </td>
                 <td>
@@ -122,7 +132,8 @@ const Expenses = () => {
                     id="delete-button"
                     type="button"
                     value="Delete"
-                    onClick={deleteRecord(expense.id)}
+                    // onClick={deleteRecord(expense.id)}
+                    onClick={deleteRecord(index)}
                   />
                 </td>
               </tr>
