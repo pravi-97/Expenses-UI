@@ -1,0 +1,15 @@
+#main-chart{
+    /* height: 100wh;
+    width: 100ww; */
+    height: 90vh;
+    width: auto;
+}
+
+.ag-chart-tooltip-title{
+    font-weight: bold;
+} 
+.ag-chart-tooltip-content{
+    color: black;
+    text-align: center;
+    font-weight: bold;
+}

@@ -4,6 +4,4 @@ body{
     background: -moz-radial-gradient(circle, hsla(0, 0%, 12%, 1) 0%, hsla(0, 0%, 0%, 1) 63%);
     background: -webkit-radial-gradient(circle, hsla(0, 0%, 12%, 1) 0%, hsla(0, 0%, 0%, 1) 63%);
     filter: progid: DXImageTransform.Microsoft.gradient(startColorstr="#1F1F1F", endColorstr="#000000", GradientType=1);
-    background-repeat: no-repeat;
-    background-size: cover;
 }

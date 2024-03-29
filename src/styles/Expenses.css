@@ -20,6 +20,10 @@ tr {
 tr, tr td>input, tr{
     background-color: transparent;
 }
+thead:hover th{
+    color: black;
+    background-color: transparent;
+}
 td{
     /* background-color: red; */
     padding: 0;
@@ -48,7 +52,7 @@ tr:hover input[type="date"]::-webkit-calendar-picker-indicator{
 #delete-button{
     text-align: center;
     background-color: red;
-    border-radius: 7px 0 0 7px;;
+    border-radius: 10px 0 0 10px;;
     border-color: black;
     color: white;
     transition: 0.5s;

@@ -10,7 +10,7 @@ const Expenses = () => {
   const [error, setError] = useState(null);
 
   function displayMessage(val){
-    alert(val);
+    // alert(val);
   }
   const handleChange = (index, field) => (event) => {
     if (expenseList.length > index && expenseList[index]) {
@@ -21,7 +21,7 @@ const Expenses = () => {
   }
   const saveChange = (index, field) => (event) => {
     axios
-      .put(API_URL + `?id=${index}&field=${field}&value=${event.target.value}`)
+      .put(API_URL + `?id=${expenseList[index].id}&field=${field}&value=${event.target.value}`)
       .then((response) => {
         // displayMessage("OK");
       })
@@ -33,7 +33,7 @@ const Expenses = () => {
     if(confirm("Are you sure you want to delete this record")){
       setExpenseList((prevState) => prevState.filter((_, i) => i !== index));
       axios
-        .delete(API_URL + index)
+        .delete(API_URL + expenseList[index].id)
         .then((response) => {
           // displayMessage("OK");
         })
@@ -45,9 +45,8 @@ const Expenses = () => {
   };
   useEffect(() => {
     axios
-      .get(API_URL)
+      .get(`${API_URL}all`)
       .then((response) => {
-        console.log(response.data);
         // setExpenseList(response.data.rows);
         setExpenseList(response.data);
         setLoading(false);
@@ -76,6 +75,7 @@ const Expenses = () => {
             <th>Type</th>
             <th>Remarks</th>
             <th>Price</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
@@ -87,10 +87,8 @@ const Expenses = () => {
                   <input
                     className="no-border"
                     type="date"
-                    value={expense.date}
-                    // onChange={handleChange(expense.id, "date")}
-                    // onBlur={saveChange(expense.id, "date")}
-                    onChange={handleChange(index, "date")}
+                    value={expense.formatted_date}
+                    onChange={handleChange(index, "formatted_date")}
                     onBlur={saveChange(index, "date")}
                   />
                 </td>
@@ -99,8 +97,6 @@ const Expenses = () => {
                     className="no-border"
                     type="text"
                     value={expense.type}
-                    // onChange={handleChange(expense.id, "type")}
-                    // onBlur={saveChange(expense.id, "type")}
                     onChange={handleChange(index, "type")}
                     onBlur={saveChange(index, "type")}
                   />
@@ -110,8 +106,6 @@ const Expenses = () => {
                     className="no-border"
                     type="text"
                     value={expense.remarks}
-                    // onChange={handleChange(expense.id, "remarks")}
-                    // onBlur={saveChange(expense.id, "remarks")}
                     onChange={handleChange(index, "remarks")}
                     onBlur={saveChange(index, "remarks")}
                   />
@@ -121,8 +115,6 @@ const Expenses = () => {
                     className="no-border"
                     type="number"
                     value={expense.price}
-                    // onChange={handleChange(expense.id, "price")}
-                    // onBlur={saveChange(expense.id, "price")}
                     onChange={handleChange(index, "price")}
                     onBlur={saveChange(index, "price")}
                   />
@@ -132,7 +124,6 @@ const Expenses = () => {
                     id="delete-button"
                     type="button"
                     value="Delete"
-                    // onClick={deleteRecord(expense.id)}
                     onClick={deleteRecord(index)}
                   />
                 </td>
