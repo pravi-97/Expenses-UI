@@ -1,0 +1,8 @@
+.navbar-home > *{
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    font-weight: bolder;
+    font-size: larger;
+    margin: 0;
+    padding: 0;
+}

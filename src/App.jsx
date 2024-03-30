@@ -7,6 +7,7 @@ import Month from "./Month";
 import Tag from "./Tag";
 import Detailed from "./Detailed";
 import Error from "./Error";
+import "./styles/App.css"
 
 function App() {
   return (

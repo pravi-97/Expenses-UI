@@ -1,15 +1,49 @@
-#main-chart{
+#main-chart {
+    position: relative;
     /* height: 100wh;
     width: 100ww; */
-    height: 90vh;
-    width: auto;
+    /* height: 90vh;
+    width: auto; */
+}
+.col-md-3{
+    background-color: red;
 }
 
 .ag-chart-tooltip-title{
     font-weight: bold;
+    text-align: center;
 } 
 .ag-chart-tooltip-content{
     color: black;
     text-align: center;
     font-weight: bold;
+}
+.row{
+    height: 100%;
+    width: 100%;
+}
+
+#tooltip-hover{
+    /* text-decoration: none; */
+    color: white;
+}
+
+#detail-type{
+    height: 90vh;
+    overflow-y: auto;
+}
+
+#select-date{
+    z-index: 9;
+    position: absolute;
+    /* left: 0; */
+    /* bottom: 0; */
+    left: 50%;
+    top: 0;
+    margin: 2% 2% 0 0;
+}
+
+#dd-mm, #dd-mm > option{
+    color: black;
+    background-color: white;
 }

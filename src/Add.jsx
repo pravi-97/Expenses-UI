@@ -54,11 +54,12 @@ const Add = () => {
         price: formData.price,
       };
       const requestOptions = {
-        body: JSON.stringify(form),
+        body: (form),
       };
       const headers = {
         "Content-Type": "application/json",
       };
+      console.log(requestOptions);
       axios
         .post(
           "http://127.0.0.1:3000/",
