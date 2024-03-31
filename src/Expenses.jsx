@@ -10,7 +10,7 @@ const Expenses = () => {
   const [error, setError] = useState(null);
 
   function displayMessage(val){
-    // alert(val);
+    console.log(val);
   }
   const handleChange = (index, field) => (event) => {
     if (expenseList.length > index && expenseList[index]) {
@@ -23,7 +23,7 @@ const Expenses = () => {
     axios
       .put(API_URL + `?id=${expenseList[index].id}&field=${field}&value=${event.target.value}`)
       .then((response) => {
-        // displayMessage("OK");
+        displayMessage("OK: ",response);
       })
       .catch((error) => {
         displayMessage(error);
@@ -35,7 +35,7 @@ const Expenses = () => {
       axios
         .delete(API_URL + expenseList[index].id)
         .then((response) => {
-          // displayMessage("OK");
+          displayMessage("OK: ",response);
         })
         .catch((error) => {
           displayMessage(error);

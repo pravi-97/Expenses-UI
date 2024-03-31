@@ -96,7 +96,7 @@ const Add = () => {
   }
   return (
     <section id="contact-section">
-      <div id="form-submit-error">
+      <div id="form-submit-error" style={{visibility: "hidden"}}>
         <p>
           An Error occured while submitting the form. Please retry after a
           while!

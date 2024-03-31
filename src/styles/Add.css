@@ -1,10 +1,10 @@
-#contact-section {
+/* #contact-section {
     width: 100%;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-}
+} */
 
 .form-container {
     max-width: 400px;
@@ -13,6 +13,11 @@
     border: 1px solid #ccc;
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #cccccc;
+    color: black;
+}
+label{
+    color: #000 !important;
 }
 
 .form {
@@ -35,11 +40,12 @@ textarea {
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 3px;
+    background-color: black;
+    text-align: start;
 }
 
-input,
-textarea {
-    text-align: start;
+input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(1);
 }
 
 .submit-button,

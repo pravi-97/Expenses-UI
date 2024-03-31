@@ -47,3 +47,10 @@
     color: black;
     background-color: white;
 }
+.list-heading{
+    text-align: center;
+    text-decoration: underline;
+}
+.list-heading span{
+    font-weight: bold;
+}

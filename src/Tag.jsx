@@ -10,11 +10,12 @@ const Tag = () => {
   useEffect(() => {
     const getDetails = (event) => {
       if (event.target.matches("#tooltip-hover")) {
-        setDetailsData({...detailsData, tag: event.target.textContent.trim() });
-        // setDetailsData(event.target.textContent);
+        setDetailsData((prevState) => ({
+          ...prevState,
+          tag: event.target.textContent.trim(),
+        }));
       }
     };
-
     document.addEventListener("click", getDetails);
 
     return () => {
@@ -23,27 +24,26 @@ const Tag = () => {
   }, []);
 
   const changedDropdown = async (event) => {
-    console.log(event.target.value);
-    setDetailsData({...detailsData, monthyear: event.target.value.trim() });
-  setIsLoading(true);
+    const monthYearValue = event.target.value.trim();
+    if (monthYearValue) {
+      setDetailsData({ tag: detailsData.tag, monthyear: monthYearValue });
+      setIsLoading(true);
       try {
         const response = await axios.get(
-          `${API_URL}monthly?month=${event.target.value.substring(
+          `${API_URL}monthly?month=${monthYearValue.substring(
             0,
             1
-          )}&year=${event.target.value.substring(2, 6)}`
+          )}&year=${monthYearValue.substring(2, 6)}`
         );
-        console.log(response);
         setOptions({ ...options, data: response.data });
-        // setDateDate(response.data.date);
-        // console.log(dateData);
-        // console.log(response.data);
       } catch (error) {
         console.error("Error fetching data:", error);
       } finally {
         setIsLoading(false);
       }
-  }
+    }
+  };
+
   function renderer(params) {
     return `<div class="ag-chart-tooltip-title" style="background-color: ${
       params.color
@@ -97,8 +97,6 @@ const Tag = () => {
         const response = await axios.get(`${API_URL}group`);
         setOptions({ ...options, data: response.data.sum });
         setDateDate(response.data.date);
-        // console.log(dateData);
-        // console.log(response.data.date);
       } catch (error) {
         console.error("Error fetching data:", error);
       } finally {
@@ -118,7 +116,7 @@ const Tag = () => {
           </select>
         ) : (
           <select name="dd-mm" id="dd-mm" onChange={changedDropdown}>
-            <option value="-"></option>
+            <option value=""></option>
             {Array.isArray(dateData) && dateData.length > 0 ? (
               dateData.map((date, index) => (
                 <option key={index} value={`${date.mm}-${date.year}`}>
@@ -127,7 +125,7 @@ const Tag = () => {
                 </option>
               ))
             ) : (
-              <div>No Expenses available.</div>
+              <option>No Expenses available.</option>
             )}
           </select>
         )}
