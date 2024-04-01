@@ -54,3 +54,8 @@
 .list-heading span{
     font-weight: bold;
 }
+
+#select-date-text{
+    /* font-size: small; */
+    font-weight: bold;
+}

@@ -110,6 +110,7 @@ const Tag = () => {
   return (
     <div id="main-chart">
       <div id="select-date">
+        <div id="select-date-text"> Filter by Month & Year</div>
         {isLoadingSelect ? (
           <select name="cars" id="cars">
             <option value="">Not Available</option>
