@@ -1,25 +1,63 @@
 .container {
     height: 100vh;
-}   
+}
+
+#add-new {
+    border-right: 5px solid white;
+    border-bottom: 5px solid white;
+}
+
+#all-expense {
+    border-left: 5px solid white;
+    border-bottom: 5px solid white;
+}
+
+#by-month {
+    border-right: 5px solid white;
+    border-top: 5px solid white;
+}
+
+#by-tag {
+    border-left: 5px solid white;
+    border-top: 5px solid white;
+}
+
 #add-new,
 #all-expense,
 #by-month,
-#by-tag{
+#by-tag {
     text-decoration: none;
     color: black;
-    /* display: flex; */
-    /* align-items: center; */
     text-align: center;
+    position: relative;
 }
-#add-new{
-    background-color: red;
+
+#add-new p,
+#all-expense p,
+#by-month p,
+#by-tag p {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 50%);
 }
-#all-expense{
-    background-color: blueviolet;
+
+#add-exp-plus,
+#add-exp-coins,
+#add-exp-calendar,
+#add-exp-tag {
+    position: absolute;
+    left: 50%;
+    bottom: 50%;
+    transform: translate(-50%, 50%);
+    font-size: 5em;
+    transition: 0.3s;
+    filter: brightness(0.2);
 }
-#by-month{
-    background-color: blue;
-}
-#by-tag{
-    background-color: green;
+
+#add-new:hover #add-exp-plus,
+#all-expense:hover #add-exp-coins,
+#by-month:hover #add-exp-calendar,
+#by-tag:hover #add-exp-tag {
+    /* filter: invert(1); */
+    filter: brightness(1);
 }

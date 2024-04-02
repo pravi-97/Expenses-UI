@@ -88,7 +88,7 @@ const Expenses = () => {
                     className="no-border"
                     type="date"
                     value={expense.formatted_date}
-                    onChange={handleChange(index, "formatted_date")}
+                    onChange={handleChange(index, "date")}
                     onBlur={saveChange(index, "date")}
                   />
                 </td>
@@ -130,7 +130,9 @@ const Expenses = () => {
               </tr>
             ))
           ) : (
-            <div>No Expenses available.</div>
+            <tr>
+              <td colSpan={5}>No Expenses available.</td>
+            </tr>
           )}
         </tbody>
       </table>

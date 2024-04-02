@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { AgChartsReact } from "ag-charts-react";
 import TagDetails from "./TagDetails";
+import Loader from "./Loader";
 import "./styles/Tag.css";
 
 const Tag = () => {
@@ -132,7 +133,15 @@ const Tag = () => {
         )}
       </div>
       {isLoading ? (
-        <p>Loading data...</p>
+        <span className="container">
+          <span className="row">
+            <span className="col-md-8 p-0">
+              <Loader />
+            </span>
+            <span className="col-md-4 p-0">
+            </span>
+          </span>
+        </span>
       ) : (
         <span className="container">
           <span className="row">

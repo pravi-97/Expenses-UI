@@ -6,16 +6,36 @@ const Home = () => {
       <div className="container">
         <div className="row">
           <Link className="col-md-6" id="add-new" to="/add">
-            Add new Expense
+            <p>Add new Expense</p>
+            <i
+              id="add-exp-plus"
+              className="fa-solid fa-plus"
+              style={{ color: "#000000;" }}
+            ></i>
           </Link>
           <Link className="col-md-6" id="all-expense" to="/expense">
-            Show All Expense
+            <p>Show All Expense</p>
+            <i
+              id="add-exp-coins"
+              className="fa-solid fa-coins"
+              style={{ color: "#000000;" }}
+            ></i>
           </Link>
           <Link className="col-md-6" id="by-month" to="/month">
-            Show Expense by Month
+            <p>Show Expense by Month</p>
+            <i
+              id="add-exp-calendar"
+              className="fa-solid fa-calendar-days"
+              style={{ color: "#000000;" }}
+            ></i>
           </Link>
           <Link className="col-md-6" id="by-tag" to="/tag">
-            Show Expense by Tag
+            <p>Show Expense by Tag</p>
+            <i
+              id="add-exp-tag"
+              className="fa-solid fa-tags"
+              style={{ color: "#000000;" }}
+            ></i>
           </Link>
           {/* <Link className="col-md-6" to="/detailed">
               Show Detailed Expense by Month

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import Loader from "./Loader";
 
 const TagDetails = ({ detailsData }) => {
   const API_URL = "http://127.1.1.0:3000/";
@@ -33,7 +34,7 @@ const TagDetails = ({ detailsData }) => {
         Expense for Type: <span>{detailsData.tag}</span>
       </div>
       {isLoading ? (
-        <div>Loading...</div>
+        <div><Loader/></div>
       ) : (
         <table>
           <thead>
