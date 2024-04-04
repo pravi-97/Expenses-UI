@@ -39,6 +39,8 @@
     position: absolute;
     left: 50%;
     transform: translate(-50%, 50%);
+    transition: 0.3s;
+    width: 100%;
 }
 
 #add-exp-plus,
@@ -60,4 +62,11 @@
 #by-tag:hover #add-exp-tag {
     /* filter: invert(1); */
     filter: brightness(1);
+}
+
+#add-new:hover p,
+#all-expense:hover p,
+#by-month:hover p,
+#by-tag:hover p {
+    font-size: x-large;
 }

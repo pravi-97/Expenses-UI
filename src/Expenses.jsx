@@ -9,7 +9,7 @@ const Expenses = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  function displayMessage(val){
+  function displayMessage(val) {
     console.log(val);
   }
   const handleChange = (index, field) => (event) => {
@@ -17,31 +17,33 @@ const Expenses = () => {
       const updatedExpenses = [...expenseList];
       updatedExpenses[index][field] = event.target.value;
       setExpenseList(updatedExpenses);
+    }
   };
-  }
   const saveChange = (index, field) => (event) => {
     axios
-      .put(API_URL + `?id=${expenseList[index].id}&field=${field}&value=${event.target.value}`)
+      .put(
+        API_URL +
+          `?id=${expenseList[index].id}&field=${field}&value=${event.target.value}`
+      )
       .then((response) => {
-        displayMessage("OK: ",response);
+        displayMessage("OK: ", response);
       })
       .catch((error) => {
         displayMessage(error);
       });
   };
   const deleteRecord = (index) => (event) => {
-    if(confirm("Are you sure you want to delete this record")){
+    if (confirm("Are you sure you want to delete this record")) {
       setExpenseList((prevState) => prevState.filter((_, i) => i !== index));
       axios
         .delete(API_URL + expenseList[index].id)
         .then((response) => {
-          displayMessage("OK: ",response);
+          displayMessage("OK: ", response);
         })
         .catch((error) => {
           displayMessage(error);
         });
     }
-
   };
   useEffect(() => {
     axios
@@ -85,6 +87,7 @@ const Expenses = () => {
                 <td>{index + 1}</td>
                 <td>
                   <input
+                    name="date"
                     className="no-border"
                     type="date"
                     value={expense.formatted_date}
@@ -94,6 +97,7 @@ const Expenses = () => {
                 </td>
                 <td>
                   <input
+                    name="type"
                     className="no-border"
                     type="text"
                     value={expense.type}
@@ -103,6 +107,7 @@ const Expenses = () => {
                 </td>
                 <td>
                   <input
+                    name="remarks"
                     className="no-border"
                     type="text"
                     value={expense.remarks}
@@ -112,6 +117,7 @@ const Expenses = () => {
                 </td>
                 <td>
                   <input
+                  name="price"
                     className="no-border"
                     type="number"
                     value={expense.price}

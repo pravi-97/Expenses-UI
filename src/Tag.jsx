@@ -26,22 +26,20 @@ const Tag = () => {
 
   const changedDropdown = async (event) => {
     const monthYearValue = event.target.value.trim();
-    if (monthYearValue) {
-      setDetailsData({ tag: detailsData.tag, monthyear: monthYearValue });
-      setIsLoading(true);
-      try {
-        const response = await axios.get(
-          `${API_URL}monthly?month=${monthYearValue.substring(
-            0,
-            1
-          )}&year=${monthYearValue.substring(2, 6)}`
-        );
-        setOptions({ ...options, data: response.data });
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      } finally {
-        setIsLoading(false);
-      }
+    setDetailsData({ tag: detailsData.tag, monthyear: monthYearValue });
+    setIsLoading(true);
+    try {
+      const response = await axios.get(
+        `${API_URL}monthly?month=${monthYearValue.substring(
+          0,
+          1
+        )}&year=${monthYearValue.substring(2, 6)}`
+      );
+      setOptions({ ...options, data: response.data });
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -138,8 +136,7 @@ const Tag = () => {
             <span className="col-md-8 p-0">
               <Loader />
             </span>
-            <span className="col-md-4 p-0">
-            </span>
+            <span className="col-md-4 p-0"></span>
           </span>
         </span>
       ) : (
