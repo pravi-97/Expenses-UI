@@ -1,82 +1,65 @@
-import {useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { AgChartsReact } from "ag-charts-react";
 
 const Month = () => {
-    const API_URL = "http://127.1.1.0:3000/";
-    const [isLoading, setIsLoading] = useState(false);
-    const [expenseList, setExpenseList] = useState([]);
-    
-    useEffect(() => {
-        setIsLoading(true);
-        axios
-          .get(`${API_URL}month`)
-          .then((response) => {
-            console.log(response);
-            setExpenseList(response.data);
-            setIsLoading(false);
-            setOptions[{ ...options, data: response.data }];
-          })
-          .catch((error) => {
-            // setError(error);
-            setIsLoading(false);
-          });
-    },[]);
-    function getData() {
-      return [
-        {
-          quarter: "Q1",
-          petrol: 200,
-          honey: 100,
-        },
-        {
-          quarter: "Q2",
-          petrol: 300,
-          diesel: 130,
-        },
-        {
-          quarter: "Q3",
-          petrol: 350,
-          diesel: 160,
-          honey: 200,
-        },
-        {
-          quarter: "Q4",
-          petrol: 400,
-          diesel: 200,
-          honey: 400,
-        },
-      ];
-    }
+  const API_URL = "http://127.1.1.0:3000/";
+  const [isLoading, setIsLoading] = useState(false);
+  // const [expenseList, setExpenseList] = useState([]);
+  useEffect(() => {
+    const fetchData = async () => {
+      setIsLoading(true);
+      try {
+        const response = await axios.get(`${API_URL}month`);
+        // Transform data if needed
+        setOptions({ ...options, data: response.data });
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    fetchData();
+  }, []);
 
   const [options, setOptions] = useState({
     title: {
-      text: "Annual Fuel Expenditure",
+      text: "Monthly Expenses",
     },
-    // data: getData(),
+    // data: fetchData(),
     series: [
       {
         type: "line",
-        xKey: "month",
-        yKey: "total_price",
-        yName: "Petrol",
-      },
-      {
-        type: "line",
-        xKey: "quarter",
-        yKey: "diesel",
-        yName: "Diesel",
-      },
-      {
-        type: "line",
-        xKey: "quarter",
-        yKey: "honey",
-        yName: "Honey",
+        xKey: "formatted_date",
+        yKey: "sum",
+        yName: "Month and Year",
       },
     ],
+    background: {
+      fill: "transparent",
+    },
   });
 
-  return <AgChartsReact options={options} />;
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     setIsLoading(true);
+  //     try {
+  //       const response = await axios.get(`${API_URL}group`);
+  //       setOptions({ ...options, data: response.data });
+  //       console.log(options);
+  //     } catch (error) {
+  //       console.error("Error fetching data:", error);
+  //     } finally {
+  //       setIsLoading(false);
+  //     }
+  //   };
+  //   fetchData();
+  // }, []);
+  return (
+    <div>
+      {isLoading ? <div>Loading..</div> : <AgChartsReact options={options} />}
+    </div>
+  );
 };
 
 export default Month;

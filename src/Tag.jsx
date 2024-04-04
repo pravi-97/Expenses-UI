@@ -72,10 +72,6 @@ const Tag = () => {
         angleKey: "total_price",
         angleName: "type",
         legendItemKey: "type",
-        // calloutLabelKey: "type",
-        // calloutLabelName: "total_price",
-        // sectorLabelKey: "total_price",
-        // sectorLabelName: "total_price",
         tooltip: {
           renderer,
           interaction: {
@@ -111,7 +107,7 @@ const Tag = () => {
       <div id="select-date">
         <div id="select-date-text"> Filter by Month & Year</div>
         {isLoadingSelect ? (
-          <select name="cars" id="cars">
+          <select name="expense" id="expense">
             <option value="">Not Available</option>
           </select>
         ) : (
