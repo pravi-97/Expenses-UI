@@ -3,7 +3,7 @@ import axios from "axios";
 import Loader from "./Loader";
 
 const TagDetails = ({ detailsData }) => {
-  const API_URL = "http://127.1.1.0:3000/";
+  const API_URL = "https://expensetracker-lhsl.onrender.com/";
   const [isLoading, setIsLoading] = useState(false);
   const [expenseList, setExpenseList] = useState([]);
   let url = "";
@@ -51,8 +51,7 @@ const TagDetails = ({ detailsData }) => {
               expenseList.map((expense, index) => (
                 <tr key={index} id={index}>
                   <td>{index + 1}</td>
-                  <td>{expense.formatted_date}</td>
-                  {/* <td>{expense.type}</td> */}
+                  <td>{expense.date}</td>
                   <td>{expense.remarks}</td>
                   <td>{expense.price}</td>
                 </tr>

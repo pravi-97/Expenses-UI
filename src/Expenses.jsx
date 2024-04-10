@@ -3,14 +3,13 @@ import axios from "axios";
 import Loader from "./Loader";
 import "./styles/Expenses.css";
 
-const API_URL = "http://127.1.1.0:3000/";
+const API_URL = "https://expensetracker-lhsl.onrender.com/";
 const Expenses = () => {
   const [expenseList, setExpenseList] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   function displayMessage(val) {
-    console.log(val);
   }
   const handleChange = (index, field) => (event) => {
     if (expenseList.length > index && expenseList[index]) {
@@ -49,7 +48,6 @@ const Expenses = () => {
     axios
       .get(`${API_URL}all`)
       .then((response) => {
-        // setExpenseList(response.data.rows);
         setExpenseList(response.data);
         setLoading(false);
       })
@@ -90,7 +88,7 @@ const Expenses = () => {
                     name="date"
                     className="no-border"
                     type="date"
-                    value={expense.formatted_date}
+                    value={expense.date}
                     onChange={handleChange(index, "date")}
                     onBlur={saveChange(index, "date")}
                   />

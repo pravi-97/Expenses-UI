@@ -32,8 +32,8 @@ const Tag = () => {
       const response = await axios.get(
         `${API_URL}monthly?month=${monthYearValue.substring(
           0,
-          1
-        )}&year=${monthYearValue.substring(2, 6)}`
+          2
+        )}&year=${monthYearValue.substring(3, 7)}`
       );
       setOptions({ ...options, data: response.data });
     } catch (error) {
@@ -58,7 +58,7 @@ const Tag = () => {
     </div>`;
   }
 
-  const API_URL = "http://127.1.1.0:3000/";
+  const API_URL = "https://expensetracker-lhsl.onrender.com/";
   const [dateData, setDateDate] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isLoadingSelect, setIsLoadingSelect] = useState(false);
@@ -92,6 +92,7 @@ const Tag = () => {
         const response = await axios.get(`${API_URL}group`);
         setOptions({ ...options, data: response.data.sum });
         setDateDate(response.data.date);
+        console.log(response.data.date);
       } catch (error) {
         console.error("Error fetching data:", error);
       } finally {
@@ -116,8 +117,7 @@ const Tag = () => {
             {Array.isArray(dateData) && dateData.length > 0 ? (
               dateData.map((date, index) => (
                 <option key={index} value={`${date.mm}-${date.year}`}>
-                  {date.mmmm}
-                  {date.year}
+                  {date.mmmm} {date.year}
                 </option>
               ))
             ) : (

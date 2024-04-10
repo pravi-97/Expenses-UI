@@ -53,21 +53,15 @@ const Add = () => {
         type: formData.type,
         price: formData.price,
       };
-      const requestOptions = {
-        body: (form),
-      };
       const headers = {
         "Content-Type": "application/json",
       };
-      console.log(requestOptions);
       axios
         .post(
-          "http://127.0.0.1:3000/",
-          //   JSON.stringify(requestOptions)
-          requestOptions
+          "https://expensetracker-lhsl.onrender.com/",
+          form
         )
         .then((response) => {
-          console.log(response);
           if (response.status != 200) {
             throw "Error";
           }
