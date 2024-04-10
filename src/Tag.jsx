@@ -92,7 +92,6 @@ const Tag = () => {
         const response = await axios.get(`${API_URL}group`);
         setOptions({ ...options, data: response.data.sum });
         setDateDate(response.data.date);
-        console.log(response.data.date);
       } catch (error) {
         console.error("Error fetching data:", error);
       } finally {
