@@ -1,16 +1,18 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { useAuth0 } from "@auth0/auth0-react";
 import Loader from "./Loader";
 import "./styles/Expenses.css";
 
 const API_URL = "https://expensetracker-lhsl.onrender.com/";
 const Expenses = () => {
+  const { user } = useAuth0();
+  console.log(user.sub); //"auth0|6620d509413c7094b9a2ba3b"
   const [expenseList, setExpenseList] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  function displayMessage(val) {
-  }
+  function displayMessage(val) {}
   const handleChange = (index, field) => (event) => {
     if (expenseList.length > index && expenseList[index]) {
       const updatedExpenses = [...expenseList];
@@ -22,7 +24,8 @@ const Expenses = () => {
     axios
       .put(
         API_URL +
-          `?id=${expenseList[index].id}&field=${field}&value=${event.target.value}`
+          `?id=${expenseList[index].id}&field=${field}&value=${event.target.value}`,
+            user.sub
       )
       .then((response) => {
         displayMessage("OK: ", response);
@@ -115,7 +118,7 @@ const Expenses = () => {
                 </td>
                 <td>
                   <input
-                  name="price"
+                    name="price"
                     className="no-border"
                     type="number"
                     value={expense.price}
