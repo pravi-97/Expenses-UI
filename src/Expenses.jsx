@@ -7,12 +7,13 @@ import "./styles/Expenses.css";
 const API_URL = "https://expensetracker-lhsl.onrender.com/";
 const Expenses = () => {
   const { user } = useAuth0();
-  console.log(user.sub); //"auth0|6620d509413c7094b9a2ba3b"
   const [expenseList, setExpenseList] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  function displayMessage(val) {}
+  function displayMessage(val) {
+    console.log(val);
+  }
   const handleChange = (index, field) => (event) => {
     if (expenseList.length > index && expenseList[index]) {
       const updatedExpenses = [...expenseList];
@@ -21,11 +22,11 @@ const Expenses = () => {
     }
   };
   const saveChange = (index, field) => (event) => {
+    console.log(expenseList[index]);
     axios
       .put(
         API_URL +
-          `?id=${expenseList[index].id}&field=${field}&value=${event.target.value}`,
-            user.sub
+          `?id=${expenseList[index].ID}&field=${field}&value=${event.target.value}`
       )
       .then((response) => {
         displayMessage("OK: ", response);
@@ -38,7 +39,9 @@ const Expenses = () => {
     if (confirm("Are you sure you want to delete this record")) {
       setExpenseList((prevState) => prevState.filter((_, i) => i !== index));
       axios
-        .delete(API_URL + expenseList[index].id)
+        .delete(API_URL + expenseList[index].id, {
+          userid: user.sub.replace("auth0|", ""),
+        })
         .then((response) => {
           displayMessage("OK: ", response);
         })
@@ -47,9 +50,11 @@ const Expenses = () => {
         });
     }
   };
+
   useEffect(() => {
+    console.log(`${API_URL}all?userid=${user.sub.replace("auth0|", "")}`);
     axios
-      .get(`${API_URL}all`)
+      .get(`${API_URL}all?userid=${user.sub.replace("auth0|", "")}`)
       .then((response) => {
         setExpenseList(response.data);
         setLoading(false);

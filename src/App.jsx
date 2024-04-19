@@ -10,9 +10,6 @@ import Error from "./Error";
 import Welcome from "./Welcome";
 import "./styles/App.css";
 import { useAuth0 } from "@auth0/auth0-react";
-import AuthLogin from "./components/authLogin";
-import AuthProfile from "./components/authProfile";
-import AuthLogout from "./components/AuthLogout";
 
 function App() {
   const { isLoading, error, isAuthenticated } = useAuth0();

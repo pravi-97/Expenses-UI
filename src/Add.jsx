@@ -1,18 +1,19 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { useAuth0 } from "@auth0/auth0-react";
 import { useNavigate } from "react-router-dom";
 import "./styles/Add.css";
 
 const Add = () => {
+  const { user } = useAuth0();
+  const getTodaysDate = () => {
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = String(today.getMonth() + 1).padStart(2, "0");
+    const day = String(today.getDate()).padStart(2, "0");
 
-    const getTodaysDate = () => {
-      const today = new Date();
-      const year = today.getFullYear();
-      const month = String(today.getMonth() + 1).padStart(2, "0");
-      const day = String(today.getDate()).padStart(2, "0");
-
-      return `${year}-${month}-${day}`;
-    };
+    return `${year}-${month}-${day}`;
+  };
 
   const history = useNavigate();
 
@@ -21,6 +22,7 @@ const Add = () => {
     remarks: "",
     type: "",
     price: "",
+    userid: user.sub.replace("auth0|", ""),
   });
   const [ifFailed, setIfFailed] = useState(false);
   const [isSubmit, setisSubmit] = useState(false);
@@ -52,15 +54,13 @@ const Add = () => {
         remarks: formData.remarks,
         type: formData.type,
         price: formData.price,
+        userid: user.sub.replace("auth0|", ""),
       };
       const headers = {
         "Content-Type": "application/json",
       };
       axios
-        .post(
-          "https://expensetracker-lhsl.onrender.com/",
-          form
-        )
+        .post("https://expensetracker-lhsl.onrender.com/", form)
         .then((response) => {
           if (response.status != 200) {
             throw "Error";
@@ -73,7 +73,6 @@ const Add = () => {
           formData.remarks = "";
           formData.type = "";
           formData.price = "";
-          //   history("/thankyou");
         })
         .catch((error) => {
           console.error("Error:", error);
@@ -90,7 +89,7 @@ const Add = () => {
   }
   return (
     <section id="contact-section">
-      <div id="form-submit-error" style={{visibility: "hidden"}}>
+      <div id="form-submit-error" style={{ visibility: "hidden" }}>
         <p>
           An Error occured while submitting the form. Please retry after a
           while!
