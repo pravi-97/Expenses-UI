@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { AgChartsReact } from "ag-charts-react";
+import { useAuth0 } from "@auth0/auth0-react";
 import TagDetails from "./TagDetails";
 import Loader from "./Loader";
 import "./styles/Tag.css";
 
 const Tag = () => {
   const [detailsData, setDetailsData] = useState({});
-
+  const { user } = useAuth0();
   useEffect(() => {
     const getDetails = (event) => {
       if (event.target.matches("#tooltip-hover")) {
@@ -33,7 +34,7 @@ const Tag = () => {
         `${API_URL}monthly?month=${monthYearValue.substring(
           0,
           2
-        )}&year=${monthYearValue.substring(3, 7)}`
+        )}&year=${monthYearValue.substring(3, 7)}&userid=${user.sub.replace("auth0|", "")}`,
       );
       setOptions({ ...options, data: response.data });
     } catch (error) {
@@ -89,7 +90,9 @@ const Tag = () => {
       setIsLoading(true);
       setIsLoadingSelect(true);
       try {
-        const response = await axios.get(`${API_URL}group`);
+        const response = await axios.get(
+          `${API_URL}group?userid=${user.sub.replace("auth0|", "")}`
+        );
         setOptions({ ...options, data: response.data.sum });
         setDateDate(response.data.date);
       } catch (error) {

@@ -1,15 +1,18 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { useAuth0 } from "@auth0/auth0-react";
 import Loader from "./Loader";
 import "./styles/Expenses.css";
 
 const API_URL = "https://expensetracker-lhsl.onrender.com/";
 const Expenses = () => {
+  const { user } = useAuth0();
   const [expenseList, setExpenseList] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   function displayMessage(val) {
+    console.log(val);
   }
   const handleChange = (index, field) => (event) => {
     if (expenseList.length > index && expenseList[index]) {
@@ -19,10 +22,11 @@ const Expenses = () => {
     }
   };
   const saveChange = (index, field) => (event) => {
+    console.log(expenseList[index]);
     axios
       .put(
         API_URL +
-          `?id=${expenseList[index].id}&field=${field}&value=${event.target.value}`
+          `?id=${expenseList[index].ID}&field=${field}&value=${event.target.value}`
       )
       .then((response) => {
         displayMessage("OK: ", response);
@@ -35,7 +39,9 @@ const Expenses = () => {
     if (confirm("Are you sure you want to delete this record")) {
       setExpenseList((prevState) => prevState.filter((_, i) => i !== index));
       axios
-        .delete(API_URL + expenseList[index].id)
+        .delete(API_URL + expenseList[index].id, {
+          userid: user.sub.replace("auth0|", ""),
+        })
         .then((response) => {
           displayMessage("OK: ", response);
         })
@@ -44,9 +50,11 @@ const Expenses = () => {
         });
     }
   };
+
   useEffect(() => {
+    console.log(`${API_URL}all?userid=${user.sub.replace("auth0|", "")}`);
     axios
-      .get(`${API_URL}all`)
+      .get(`${API_URL}all?userid=${user.sub.replace("auth0|", "")}`)
       .then((response) => {
         setExpenseList(response.data);
         setLoading(false);
@@ -115,7 +123,7 @@ const Expenses = () => {
                 </td>
                 <td>
                   <input
-                  name="price"
+                    name="price"
                     className="no-border"
                     type="number"
                     value={expense.price}
