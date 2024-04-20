@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { useAuth0 } from "@auth0/auth0-react";
 import Navbar from "./Navbar";
 import Home from "./Home";
 import Add from "./Add";
@@ -8,22 +9,25 @@ import Tag from "./Tag";
 import Detailed from "./Detailed";
 import Error from "./Error";
 import Welcome from "./Welcome";
+import Loader from "./Loader";
 import "./styles/App.css";
-import { useAuth0 } from "@auth0/auth0-react";
 
 function App() {
   const { isLoading, error, isAuthenticated } = useAuth0();
 
   if (error) {
-    return <div>Oops... {error.message}</div>;
+    return (
+      <div>
+        <Error /> {error.message}
+      </div>
+    );
   }
   if (isLoading) {
-    return <div>Loading</div>;
+    return <Loader/>;
   }
   if (!isAuthenticated) {
     return (
       <BrowserRouter>
-        <Navbar />
         <Welcome/>
       </BrowserRouter>
     );
