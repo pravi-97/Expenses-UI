@@ -1,0 +1,12 @@
+.home-button {
+    padding-top: 10px !important;
+    font-size: xx-large !important;
+}
+
+.right-side{
+    position: absolute;
+    right: 0;
+}
+.welcome-msg{
+    margin-right: 20px;
+}

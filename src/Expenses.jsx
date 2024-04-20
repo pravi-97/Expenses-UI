@@ -11,8 +11,31 @@ const Expenses = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  
   function displayMessage(val) {
-    console.log(val);
+    const message = document.getElementById("message-box");
+    
+    if (val == "updated") {
+      message.textContent = "Update Successfull!";
+      message.style.backgroundColor = "greenyellow";
+      displayMessageBox();
+    }else if(val == "deleted"){
+      message.textContent = "Delete Successfull!";
+      message.style.backgroundColor = "greenyellow";
+      displayMessageBox();
+    }else {
+      message.textContent = "An Error Occurred!";
+      message.style.backgroundColor = "red";
+      displayMessageBox();
+    }
+    function displayMessageBox() {
+      message.style.opacity = "1";
+      setTimeout(hideMessageBox, 3000);
+    }
+    function hideMessageBox(){
+      const message = document.getElementById("message-box");
+      message.style.opacity = "0";
+    }
   }
   const handleChange = (index, field) => (event) => {
     if (expenseList.length > index && expenseList[index]) {
@@ -22,14 +45,13 @@ const Expenses = () => {
     }
   };
   const saveChange = (index, field) => (event) => {
-    console.log(expenseList[index]);
     axios
       .put(
         API_URL +
           `?id=${expenseList[index].ID}&field=${field}&value=${event.target.value}`
       )
       .then((response) => {
-        displayMessage("OK: ", response);
+        displayMessage(response.data.message);
       })
       .catch((error) => {
         displayMessage(error);
@@ -39,11 +61,9 @@ const Expenses = () => {
     if (confirm("Are you sure you want to delete this record")) {
       setExpenseList((prevState) => prevState.filter((_, i) => i !== index));
       axios
-        .delete(API_URL + expenseList[index].id, {
-          userid: user.sub.replace("auth0|", ""),
-        })
+        .delete(API_URL + expenseList[index].ID)
         .then((response) => {
-          displayMessage("OK: ", response);
+          displayMessage(response.data.message);
         })
         .catch((error) => {
           displayMessage(error);
@@ -52,7 +72,6 @@ const Expenses = () => {
   };
 
   useEffect(() => {
-    console.log(`${API_URL}all?userid=${user.sub.replace("auth0|", "")}`);
     axios
       .get(`${API_URL}all?userid=${user.sub.replace("auth0|", "")}`)
       .then((response) => {
@@ -74,7 +93,7 @@ const Expenses = () => {
   }
 
   return (
-    <div className="container">
+    <div className="container" id="message-container">
       <table>
         <thead>
           <tr>
@@ -148,6 +167,7 @@ const Expenses = () => {
           )}
         </tbody>
       </table>
+      <div id="message-box"></div>
     </div>
   );
 };

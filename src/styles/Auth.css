@@ -1,0 +1,16 @@
+.auth-button {
+    border: none;
+    background: transparent;
+    width: auto;
+    padding: 10px 20px;
+    transition: 0.5s;
+}
+
+.auth-button:hover {
+    border: none;
+    background: white;
+    color: black;
+    width: auto;
+    padding: 10px 20px;
+    transform: translateY(-5px);
+}
