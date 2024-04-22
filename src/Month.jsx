@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { AgChartsReact } from "ag-charts-react";
 import { useAuth0 } from "@auth0/auth0-react";
+import Loader from "./Loader";
 
 const Month = () => {
   const { user } = useAuth0();
@@ -44,7 +45,7 @@ const Month = () => {
   });
   return (
     <div>
-      {isLoading ? <div>Loading..</div> : <AgChartsReact options={options} />}
+      {isLoading ? <div><Loader/></div> : <AgChartsReact options={options} />}
     </div>
   );
 };
