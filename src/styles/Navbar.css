@@ -10,3 +10,27 @@
 .welcome-msg{
     margin-right: 20px;
 }
+
+@media (max-width: 768px) {
+
+    .container{
+        padding: 0px 0px;
+    }
+    .home-button{
+        font-size: large !important;
+    }
+    .auth-button{
+        font-size: large !important;
+        padding: 0px 10px !important;
+    }
+    .welcome-msg{
+        font-size: medium;
+        margin-right: 10px;
+    }
+    td, th{
+        padding: 0px 0px 0px 0px !important;
+    }
+    /* th:nth-child(2){
+
+    } */
+}
