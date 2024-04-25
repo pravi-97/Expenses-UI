@@ -1,9 +1,5 @@
 #main-chart {
     position: relative;
-    /* height: 100wh;
-    width: 100ww; */
-    /* height: 90vh;
-    width: auto; */
 }
 
 .ag-chart-tooltip-title {
@@ -55,6 +51,5 @@
 }
 
 #select-date-text {
-    /* font-size: small; */
     font-weight: bold;
 }
