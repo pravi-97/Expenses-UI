@@ -43,7 +43,6 @@ const TagDetails = ({ detailsData }) => {
             <tr>
               <th>Sl No</th>
               <th>Date</th>
-              {/* <th>Type</th> */}
               <th>Remarks</th>
               <th>Price</th>
             </tr>

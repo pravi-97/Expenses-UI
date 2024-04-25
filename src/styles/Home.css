@@ -60,7 +60,6 @@
 #all-expense:hover #add-exp-coins,
 #by-month:hover #add-exp-calendar,
 #by-tag:hover #add-exp-tag {
-    /* filter: invert(1); */
     filter: brightness(1);
 }
 

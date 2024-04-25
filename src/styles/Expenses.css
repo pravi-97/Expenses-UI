@@ -13,7 +13,6 @@ td,th{
     background-color: transparent;
 }
 tr {
-    /* border-bottom: 1px solid; */
     border-width: 200%;
     border-radius: 0%;
 }
@@ -25,7 +24,6 @@ thead:hover th{
     background-color: transparent;
 }
 td{
-    /* background-color: red; */
     padding: 0;
     margin: 0;
 }
@@ -33,9 +31,6 @@ tr:hover td>input, tr:hover,tr:hover td {
     background-color: rgb(255, 255, 255);
     color: black;
 }
-/* tr:focus-within td>input, tr:focus-within{
-    background-color: rgb(255, 255, 255);
-} */
 tr td>input{
     border: none;
 }
@@ -62,9 +57,6 @@ tr:hover input[type="date"]::-webkit-calendar-picker-indicator{
     filter: brightness(1);
 }
 
-/* #message-container{
-    position: relative;
-} */
 #message-box{
     text-align: center;
     min-width: 30%;
