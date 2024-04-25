@@ -63,7 +63,7 @@ tr:hover input[type="date"]::-webkit-calendar-picker-indicator{
     max-width: 100%;
     opacity: 0;
     transition: 1s;
-    position: absolute;
+    position: fixed;
     bottom: 0;
     right: 0;
     margin-right: 10px;

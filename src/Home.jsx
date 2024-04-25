@@ -10,7 +10,6 @@ const Home = () => {
             <i
               id="add-exp-plus"
               className="fa-solid fa-plus"
-              style={{ color: "#000000;" }}
             ></i>
           </Link>
           <Link className="col-md-6" id="all-expense" to="/expense">
@@ -18,7 +17,6 @@ const Home = () => {
             <i
               id="add-exp-coins"
               className="fa-solid fa-coins"
-              style={{ color: "#000000;" }}
             ></i>
           </Link>
           <Link className="col-md-6" id="by-month" to="/month">
@@ -26,7 +24,6 @@ const Home = () => {
             <i
               id="add-exp-calendar"
               className="fa-solid fa-calendar-days"
-              style={{ color: "#000000;" }}
             ></i>
           </Link>
           <Link className="col-md-6" id="by-tag" to="/tag">
@@ -34,13 +31,8 @@ const Home = () => {
             <i
               id="add-exp-tag"
               className="fa-solid fa-tags"
-              style={{ color: "#000000;" }}
             ></i>
           </Link>
-          {/* <Link className="col-md-6" to="/detailed">
-              Show Detailed Expense by Month
-            </Link>
-            */}
         </div>
       </div>
     </>

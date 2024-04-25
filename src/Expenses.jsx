@@ -30,10 +30,9 @@ const Expenses = () => {
     }
     function displayMessageBox() {
       message.style.opacity = "1";
-      setTimeout(hideMessageBox, 3000);
+      setTimeout(hideMessageBox, 5000);
     }
     function hideMessageBox(){
-      const message = document.getElementById("message-box");
       message.style.opacity = "0";
     }
   }
