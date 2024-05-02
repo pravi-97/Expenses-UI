@@ -2,6 +2,10 @@
     height: 100vh;
 }
 
+.row {
+    margin: 0;
+}
+
 #add-new {
     border-right: 5px solid white;
     border-bottom: 5px solid white;
@@ -47,13 +51,14 @@
 #add-exp-coins,
 #add-exp-calendar,
 #add-exp-tag {
+    color: white;
     position: absolute;
     left: 50%;
     bottom: 50%;
     transform: translate(-50%, 50%);
     font-size: 5em;
     transition: 0.3s;
-    filter: brightness(0.2);
+    filter: brightness(0.4);
 }
 
 #add-new:hover #add-exp-plus,
@@ -72,29 +77,29 @@
 
 @media (max-width: 768px) {
 
-    .row{
+    .row {
         margin: 0px;
     }
-    #add-new {
-            border-right: 0px;
-            border-bottom: 10px solid white;
-        }
-    
-        #all-expense {
-            border-left: 0px;
-            border-bottom: 10px solid white;
-        }
-    
-        #by-month {
-            border-right: 0px;
-            border-top: 0px;
-            border-bottom: 10px solid white;
-        }
-    
-        #by-tag {
-            border-left: 0px;
-            border-top: 0px;
-            border-bottom: 10px solid white;
-        }
-}
 
+    #add-new {
+        border-right: 0px;
+        border-bottom: 10px solid white;
+    }
+
+    #all-expense {
+        border-left: 0px;
+        border-bottom: 10px solid white;
+    }
+
+    #by-month {
+        border-right: 0px;
+        border-top: 0px;
+        border-bottom: 10px solid white;
+    }
+
+    #by-tag {
+        border-left: 0px;
+        border-top: 0px;
+        border-bottom: 10px solid white;
+    }
+}
