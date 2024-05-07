@@ -1,0 +1,11 @@
+#detailed-section label {
+    color: white !important;
+}
+/* #detailed-section, */
+.blur{
+    filter: blur(5px);
+}
+
+.expandedClass {
+
+}

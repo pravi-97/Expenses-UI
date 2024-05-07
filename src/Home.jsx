@@ -29,7 +29,7 @@ const Home = () => {
             <p>Show All Expense</p>
             <i id="add-exp-coins" className="fa-solid fa-coins"></i>
           </Link>
-          <Link className="col-md-4" id="details" to="#">
+          <Link className="col-md-4" id="details" to="/detailed">
             <p>Details</p>
             <i id="add-exp-details" className="fa-solid fa-chart-simple"></i>
           </Link>
@@ -41,7 +41,7 @@ const Home = () => {
             <p>Show Expense by Tag</p>
             <i id="add-exp-tag" className="fa-solid fa-tags"></i>
           </Link>
-          <Link className="col-md-4" id="question" to="#">
+          <Link className="col-md-4" id="question" to="/help">
             <p>Help</p>
             <i id="add-exp-help" className="fa-solid fa-question"></i>
           </Link>
