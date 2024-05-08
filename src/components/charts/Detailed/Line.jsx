@@ -1,110 +1,59 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import axios from "axios";
 import { AgChartsReact } from "ag-charts-react";
+import { useAuth0 } from "@auth0/auth0-react";
+import Loader from "/src/Loader";
 
-const LineChart = () => {
-  function getLoungeData() {
-    return [
-      {
-        time: new Date("01 Jan 2020 13:25:30 GMT"),
-        sensor: 25,
-      },
-      {
-        time: new Date("01 Jan 2020 13:26:30 GMT"),
-        sensor: 24,
-      },
-      {
-        time: new Date("01 Jan 2020 13:27:30 GMT"),
-        sensor: 24,
-      },
-      {
-        time: new Date("01 Jan 2020 13:28:30 GMT"),
-        sensor: 23,
-      },
-      {
-        time: new Date("01 Jan 2020 13:29:30 GMT"),
-        sensor: 22.5,
-      },
-      {
-        time: new Date("01 Jan 2020 13:30:30 GMT"),
-        sensor: 21.5,
-      },
-      {
-        time: new Date("01 Jan 2020 13:31:30 GMT"),
-        sensor: 22.5,
-      },
-    ];
-  }
+const Line = ({ formData }) => {
+  const { user } = useAuth0();
+  const API_URL = "https://expensetracker-lhsl.onrender.com/";
+  const [isLoading, setIsLoading] = useState(false);
+  useEffect(() => {
+    const fetchData = async () => {
+      setIsLoading(true);
+      try {
+        const response = await axios.get(
+          `${API_URL}month?fromdate=${formData.fromDate}&todate=${
+            formData.toDate
+          }&userid=${user.sub.replace("auth0|", "")}`
+        );
+        setOptions({ ...options, data: response.data });
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    fetchData();
+  }, []);
 
-  function getOfficeData() {
-    return [
-      {
-        time: Date.parse("01 Jan 2020 13:25:00 GMT"),
-        sensor: 21,
-      },
-      {
-        time: Date.parse("01 Jan 2020 13:26:00 GMT"),
-        sensor: 22,
-      },
-      {
-        time: Date.parse("01 Jan 2020 13:28:00 GMT"),
-        sensor: 22,
-      },
-      {
-        time: Date.parse("01 Jan 2020 13:29:00 GMT"),
-        sensor: 23,
-      },
-      {
-        time: Date.parse("01 Jan 2020 13:30:00 GMT"),
-        sensor: 24,
-      },
-      {
-        time: Date.parse("01 Jan 2020 13:31:00 GMT"),
-        sensor: 24,
-      },
-      {
-        time: Date.parse("01 Jan 2020 13:32:00 GMT"),
-        sensor: 24.5,
-      },
-      {
-        time: Date.parse("01 Jan 2020 13:33:00 GMT"),
-        sensor: 24.5,
-      },
-    ];
-  }
   const [options, setOptions] = useState({
     title: {
-      text: "Temperature Readings",
+      text: "Monthly Expenses",
     },
     series: [
       {
-        data: getLoungeData(),
-        xKey: "time",
-        yKey: "sensor",
-        yName: "Lounge",
-      },
-      {
-        data: getOfficeData(),
-        xKey: "time",
-        yKey: "sensor",
-        yName: "Office",
+        type: "line",
+        xKey: "formatted_date",
+        yKey: "price",
+        yName: "Month and Year",
       },
     ],
-    axes: [
-      {
-        type: "time",
-        position: "bottom",
-      },
-      {
-        type: "number",
-        position: "left",
-        label: {
-          format: "#{.1f} °C",
-        },
-      },
-    ],
+    background: {
+      fill: "transparent",
+    },
   });
-
-  return <AgChartsReact options={options} />;
+  return (
+    <div>
+      {isLoading ? (
+        <div>
+          <Loader />
+        </div>
+      ) : (
+        <AgChartsReact options={options} />
+      )}
+    </div>
+  );
 };
 
-export default LineChart;
+export default Line;

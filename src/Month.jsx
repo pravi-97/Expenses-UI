@@ -8,7 +8,6 @@ const Month = () => {
   const { user } = useAuth0();
   const API_URL = "https://expensetracker-lhsl.onrender.com/";
   const [isLoading, setIsLoading] = useState(false);
-  // const [expenseList, setExpenseList] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
       setIsLoading(true);
@@ -30,7 +29,6 @@ const Month = () => {
     title: {
       text: "Monthly Expenses",
     },
-    // data: fetchData(),
     series: [
       {
         type: "line",

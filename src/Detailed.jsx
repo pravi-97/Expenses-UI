@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import "./styles/Detailed.css";
 import LineChart from "./components/charts/Detailed/Line";
 import ChartMain from "./ChartMain";
+import Pie from "./components/charts/Detailed/Pie";
+import Bar from "./components/charts/Detailed/Bar";
 
 const Detailed = () => {
   const [detailsData, setDetailsData] = useState(null);
@@ -10,11 +12,18 @@ const Detailed = () => {
     setDetailsData(ele);
     const element = document.getElementById("all-charts-section");
     element.classList.add("blur");
+    const styleEle = document.getElementById("chart-main-section");
+    styleEle.style.zIndex = 10;
+    styleEle.style.display = "block";
   };
   const retractWindow = () => {
     setDetailsData(null);
     const element = document.getElementById("all-charts-section");
     element.classList.remove("blur");
+    const styleEle = document.getElementById("chart-main-section");
+    styleEle.style.zIndex = 0;
+    styleEle.style.display = "none";
+
   };
   const getTodaysDate = () => {
     const today = new Date();
@@ -82,7 +91,6 @@ const Detailed = () => {
           </div>
         </div>
       </div>
-      <br />
       <ChartMain detailsData={detailsData} />
       <button id="close_button" type="button" onClick={retractWindow}>
         Close
@@ -92,35 +100,35 @@ const Detailed = () => {
           <div
             className="col-md-6"
             id="expandable-chart1"
-            onClick={(func) => expandWindow(<LineChart />)}
+            onClick={(func) => expandWindow(<Pie formData={formData} />)}
           >
-            <LineChart />
+            <Pie formData={formData} />
           </div>
           <div
             className="col-md-6"
             id="expandable-chart2"
-            onClick={(func) => expandWindow(<LineChart />)}
+            onClick={(func) => expandWindow(<Bar/>)}
           >
             <a>
-              <LineChart />
+              <Bar/>
             </a>
           </div>
           <div
             className="col-md-6"
             id="expandable-chart3"
-            onClick={(func) => expandWindow(<LineChart />)}
+            onClick={(func) => expandWindow(<LineChart formData={formData} />)}
           >
             <a>
-              <LineChart />
+              <LineChart formData={formData} />
             </a>
           </div>
           <div
             className="col-md-6"
             id="expandable-chart4"
-            onClick={(func) => expandWindow(<LineChart />)}
+            onClick={(func) => expandWindow(<LineChart formData={formData} />)}
           >
             <a>
-              <LineChart />
+              <LineChart formData={formData} />
             </a>
           </div>
         </div>
