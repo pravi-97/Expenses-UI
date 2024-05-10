@@ -74,6 +74,7 @@ const Expenses = () => {
     axios
       .get(`${API_URL}all?userid=${user.sub.replace("auth0|", "")}`)
       .then((response) => {
+        console.log(response.data);
         setExpenseList(response.data);
         setLoading(false);
       })

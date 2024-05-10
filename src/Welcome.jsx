@@ -1,4 +1,4 @@
-import AuthLogin from './components/authLogin'
+import AuthLogin from './components/authLogin';
 import "./styles/Welcome.css";
 
 const WelcomePage = () => {

@@ -11,6 +11,7 @@ import Error from "./Error";
 import Welcome from "./Welcome";
 import Loader from "./Loader";
 import "./styles/App.css";
+import Help from "./Help";
 
 function App() {
   const { isLoading, error, isAuthenticated } = useAuth0();
@@ -42,6 +43,7 @@ function App() {
         <Route path="/month" element={<Month />} />
         <Route path="/tag" element={<Tag />} />
         <Route path="/detailed" element={<Detailed />} />
+        <Route path="/help" element={<Help/>} />
         <Route path="/" element={<Home />} />
         <Route path="/*" element={<Error />} />
       </Routes>
