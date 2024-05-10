@@ -1,60 +1,60 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { AgChartsReact } from "ag-charts-react";
-
+import { useAuth0 } from "@auth0/auth0-react";
+import Loader from "/src/Loader";
+import axios from "axios";
 const Bar = () => {
+  const API_URL = "https://expensetracker-lhsl.onrender.com/";
+  const { user } = useAuth0();
+  const [isLoading, setIsLoading] = useState(false);
   const [options, setOptions] = useState({
     title: {
-      text: "Apple's Revenue by Product Category",
+      text: "Daily Expense",
     },
     subtitle: {
-      text: "In Billion U.S. Dollars",
+      text: "In Rupee",
     },
-    data: [
-    {
-      quarter: "Q1'18",
-      iphone: 140,
-      mac: 16,
-      ipad: 14,
-      wearables: 12,
-      services: 20,
-    },
-    {
-      quarter: "Q2'18",
-      iphone: 124,
-      mac: 20,
-      ipad: 14,
-      wearables: 12,
-      services: 30,
-    },
-    {
-      quarter: "Q3'18",
-      iphone: 112,
-      mac: 20,
-      ipad: 18,
-      wearables: 14,
-      services: 36,
-    },
-    {
-      quarter: "Q4'18",
-      iphone: 118,
-      mac: 24,
-      ipad: 14,
-      wearables: 14,
-      services: 36,
-    },
-  ],
     series: [
       {
         type: "bar",
-        xKey: "quarter",
-        yKey: "iphone",
-        yName: "iPhone",
-      },    
-     
+        xKey: "date",
+        yKey: "price",
+        // yName: "remarks",
+      },
     ],
+    background: {
+      fill: "transparent",
+    },
   });
 
-  return <AgChartsReact options={options} />;
+  useEffect(() => {
+    const fetchData = async () => {
+      setIsLoading(true);
+      try {
+        const response = await axios.get(
+          `${API_URL}all?userid=${user.sub.replace("auth0|", "")}`
+        );
+        setOptions({ ...options, data: response.data });
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    fetchData();
+  }, []);
+
+  return (
+    <div>
+      {isLoading ? (
+        <div>
+          <Loader />
+        </div>
+      ) : (
+        <AgChartsReact options={options} />
+      )}
+    </div>
+  );
 };
 
 export default Bar;

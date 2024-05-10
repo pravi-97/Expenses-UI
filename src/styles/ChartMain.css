@@ -4,12 +4,13 @@
     left: 50%;
     top: 0%;
     transform: translate(-50%, 25%);
-    /* width: 80%; */
-    /* height: 80%; */
-    background-color: wheat;
+    width: 100%;
+    height: 100%;
+    background-color: black;
 }
 
-#zoomed-chart {
-    width: 100%;
-    height: auto;
+#chart-main-section canvas {
+    height: 100vh;
+    /* width: 539px;
+    height: 599px; */
 }

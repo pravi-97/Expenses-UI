@@ -8,7 +8,7 @@ const ChartMain = ({ detailsData }) => {
 
   return (
     <div id="chart-main-section">
-      <div className="container m-0 p-0">
+      <div className="container">
         <div className="row">
           <div className="col-md-12" id="zoomed-chart">
             {detailsData}

@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
 import "./styles/Detailed.css";
 import LineChart from "./components/charts/Detailed/Line";
 import ChartMain from "./ChartMain";
@@ -15,6 +14,8 @@ const Detailed = () => {
     const styleEle = document.getElementById("chart-main-section");
     styleEle.style.zIndex = 10;
     styleEle.style.display = "block";
+    const close_button = document.getElementById("close_button");
+    close_button.style.display = "block";
   };
   const retractWindow = () => {
     setDetailsData(null);
@@ -23,7 +24,8 @@ const Detailed = () => {
     const styleEle = document.getElementById("chart-main-section");
     styleEle.style.zIndex = 0;
     styleEle.style.display = "none";
-
+    const close_button = document.getElementById("close_button");
+    close_button.style.display = "none";
   };
   const getTodaysDate = () => {
     const today = new Date();
@@ -85,6 +87,8 @@ const Detailed = () => {
               type="button"
               className="btn btn-primary"
               onClick={fetchData}
+              title="disabled"
+              disabled
             >
               Fetch
             </button>
@@ -92,7 +96,7 @@ const Detailed = () => {
         </div>
       </div>
       <ChartMain detailsData={detailsData} />
-      <button id="close_button" type="button" onClick={retractWindow}>
+      <button id="close_button" type="button" className="btn" onClick={retractWindow}>
         Close
       </button>
       <div className="container-fluid">
@@ -107,10 +111,10 @@ const Detailed = () => {
           <div
             className="col-md-6"
             id="expandable-chart2"
-            onClick={(func) => expandWindow(<Bar/>)}
+            onClick={(func) => expandWindow(<Bar />)}
           >
             <a>
-              <Bar/>
+              <Bar />
             </a>
           </div>
           <div
@@ -122,7 +126,7 @@ const Detailed = () => {
               <LineChart formData={formData} />
             </a>
           </div>
-          <div
+          {/* <div
             className="col-md-6"
             id="expandable-chart4"
             onClick={(func) => expandWindow(<LineChart formData={formData} />)}
@@ -130,7 +134,7 @@ const Detailed = () => {
             <a>
               <LineChart formData={formData} />
             </a>
-          </div>
+          </div> */}
         </div>
       </div>
     </>

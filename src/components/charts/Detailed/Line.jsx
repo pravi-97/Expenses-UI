@@ -8,6 +8,7 @@ const Line = ({ formData }) => {
   const { user } = useAuth0();
   const API_URL = "https://expensetracker-lhsl.onrender.com/";
   const [isLoading, setIsLoading] = useState(false);
+  
   useEffect(() => {
     const fetchData = async () => {
       setIsLoading(true);
