@@ -6,7 +6,7 @@ import Loader from "./Loader";
 
 const Month = () => {
   const { user } = useAuth0();
-  const API_URL = "https://expensetracker-lhsl.onrender.com/";
+  const API_URL = import.meta.env.VITE_API_URL;
   const [isLoading, setIsLoading] = useState(false);
   useEffect(() => {
     const fetchData = async () => {
