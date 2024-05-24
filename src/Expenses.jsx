@@ -4,7 +4,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import Loader from "./Loader";
 import "./styles/Expenses.css";
 
-const API_URL = "https://expensetracker-lhsl.onrender.com/";
+const API_URL = import.meta.env.VITE_API_URL;
 const Expenses = () => {
   const { user } = useAuth0();
   const [expenseList, setExpenseList] = useState([]);
