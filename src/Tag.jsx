@@ -59,7 +59,7 @@ const Tag = () => {
     </div>`;
   }
 
-  const API_URL = "https://expensetracker-lhsl.onrender.com/";
+  const API_URL = import.meta.env.VITE_API_URL;
   const [dateData, setDateDate] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isLoadingSelect, setIsLoadingSelect] = useState(false);
