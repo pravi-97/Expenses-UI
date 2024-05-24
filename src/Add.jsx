@@ -60,7 +60,7 @@ const Add = () => {
         "Content-Type": "application/json",
       };
       axios
-        .post("https://expensetracker-lhsl.onrender.com/", form)
+        .post(import.meta.env.VITE_API_URL, form)
         .then((response) => {
           if (response.status != 200) {
             throw "Error";
