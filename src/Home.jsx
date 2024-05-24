@@ -4,7 +4,7 @@ import axios from "axios";
 import "./styles/Home.css";
 const Home = () => {
 
-  const API_URL = "https://expensetracker-lhsl.onrender.com/";
+  const API_URL = import.meta.env.VITE_API_URL;
   useEffect(() => {
     axios
       .get(`${API_URL}ping`)
