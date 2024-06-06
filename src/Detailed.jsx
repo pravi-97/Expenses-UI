@@ -81,18 +81,18 @@ const Detailed = () => {
               onChange={handleChange}
             />
           </div>
-          <div className="fetch-button col-md-2">
+          {/* <div className="fetch-button col-md-2">
             <br />
             <button
               type="button"
               className="btn btn-primary"
               onClick={fetchData}
-              title="disabled"
-              disabled
+              // title="disabled"
+              // disabled
             >
               Fetch
             </button>
-          </div>
+          </div> */}
         </div>
       </div>
       <ChartMain detailsData={detailsData} />
@@ -111,10 +111,10 @@ const Detailed = () => {
           <div
             className="col-md-6"
             id="expandable-chart2"
-            onClick={(func) => expandWindow(<Bar />)}
+            onClick={(func) => expandWindow(<Bar formData={formData}/>)}
           >
             <a>
-              <Bar />
+              <Bar formData={formData}/>
             </a>
           </div>
           <div
@@ -126,15 +126,6 @@ const Detailed = () => {
               <LineChart formData={formData} />
             </a>
           </div>
-          {/* <div
-            className="col-md-6"
-            id="expandable-chart4"
-            onClick={(func) => expandWindow(<LineChart formData={formData} />)}
-          >
-            <a>
-              <LineChart formData={formData} />
-            </a>
-          </div> */}
         </div>
       </div>
     </>
