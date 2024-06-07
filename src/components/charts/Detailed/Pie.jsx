@@ -4,7 +4,7 @@ import { AgChartsReact } from "ag-charts-react";
 import { useAuth0 } from "@auth0/auth0-react";
 import Loader from "/src/Loader";
 const Pie = ({ formData }) => {
-  const API_URL = "https://expensetracker-lhsl.onrender.com/";
+  const API_URL = import.meta.env.VITE_API_URL;
   const { user } = useAuth0();
   const [isLoading, setIsLoading] = useState(false);
   const [options, setOptions] = useState({
@@ -40,7 +40,7 @@ const Pie = ({ formData }) => {
           }&userid=${user.sub.replace("auth0|", "")}`
         );
         setOptions({ ...options, data: response.data.sum });
-        // setDateDate(response.data.date);
+        console.log("Pie options: ",options);
       } catch (error) {
         console.error("Error fetching data:", error);
       } finally {
@@ -49,7 +49,7 @@ const Pie = ({ formData }) => {
     };
 
     fetchData();
-  }, []);
+  }, [formData]);
 
   function renderer(params) {
     return `<div class="ag-chart-tooltip-title" style="background-color: ${
@@ -73,7 +73,9 @@ const Pie = ({ formData }) => {
           <Loader />
         </div>
       ) : (
-        <AgChartsReact options={options} />
+        <div className="container">
+          <AgChartsReact options={options} />
+        </div>
       )}
     </div>
   );
