@@ -19,6 +19,7 @@ const Line = ({ formData }) => {
           }&userid=${user.sub.replace("auth0|", "")}`
         );
         setOptions({ ...options, data: response.data });
+        console.log("Line options: ",options);
       } catch (error) {
         console.error("Error fetching data:", error);
       } finally {
