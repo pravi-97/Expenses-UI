@@ -44,7 +44,7 @@ const Bar = ({ formData }) => {
         setIsLoading(false);
       }
     };
-    // fetchData();
+    fetchData();
   }, [formData]);
 
   return (
@@ -54,7 +54,9 @@ const Bar = ({ formData }) => {
           <Loader />
         </div>
       ) : (
-        <AgChartsReact options={options} />
+        <div className="container">
+          <AgChartsReact options={options} />
+        </div>
       )}
     </div>
   );

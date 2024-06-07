@@ -52,7 +52,9 @@ const Line = ({ formData }) => {
           <Loader />
         </div>
       ) : (
-        <AgChartsReact options={options} />
+        <div className="container">
+          <AgChartsReact options={options} />
+        </div>
       )}
     </div>
   );

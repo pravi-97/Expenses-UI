@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./styles/Detailed.css";
-import LineChart from "./components/charts/Detailed/Line";
 import ChartMain from "./ChartMain";
+import Line from "./components/charts/Detailed/Line";
 import Pie from "./components/charts/Detailed/Pie";
 import Bar from "./components/charts/Detailed/Bar";
 
@@ -81,18 +81,6 @@ const Detailed = () => {
               onChange={handleChange}
             />
           </div>
-          {/* <div className="fetch-button col-md-2">
-            <br />
-            <button
-              type="button"
-              className="btn btn-primary"
-              onClick={fetchData}
-              // title="disabled"
-              // disabled
-            >
-              Fetch
-            </button>
-          </div> */}
         </div>
       </div>
       <ChartMain detailsData={detailsData} />
@@ -102,14 +90,14 @@ const Detailed = () => {
       <div className="container-fluid">
         <div className="row" id="all-charts-section">
           <div
-            className="col-md-6"
+            className="col-md-4"
             id="expandable-chart1"
             onClick={(func) => expandWindow(<Pie formData={formData} />)}
           >
             <Pie formData={formData} />
           </div>
           <div
-            className="col-md-6"
+            className="col-md-4"
             id="expandable-chart2"
             onClick={(func) => expandWindow(<Bar formData={formData}/>)}
           >
@@ -118,12 +106,12 @@ const Detailed = () => {
             </a>
           </div>
           <div
-            className="col-md-6"
+            className="col-md-4"
             id="expandable-chart3"
-            onClick={(func) => expandWindow(<LineChart formData={formData} />)}
+            onClick={(func) => expandWindow(<Line formData={formData} />)}
           >
             <a>
-              <LineChart formData={formData} />
+              <Line formData={formData} />
             </a>
           </div>
         </div>
