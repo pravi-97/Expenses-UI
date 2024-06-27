@@ -35,9 +35,7 @@ const Bar = ({ formData }) => {
             formData.toDate
           }&userid=${user.sub.replace("auth0|", "")}`
         );
-        // console.log(response.data);
         setOptions({ ...options, data: response.data });
-        console.log("Bar options: ",options);
       } catch (error) {
         console.error("Error fetching data:", error);
       } finally {

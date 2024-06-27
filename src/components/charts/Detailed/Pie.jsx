@@ -40,7 +40,6 @@ const Pie = ({ formData }) => {
           }&userid=${user.sub.replace("auth0|", "")}`
         );
         setOptions({ ...options, data: response.data.sum });
-        console.log("Pie options: ",options);
       } catch (error) {
         console.error("Error fetching data:", error);
       } finally {
