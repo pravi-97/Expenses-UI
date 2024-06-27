@@ -140,7 +140,7 @@ const Tag = () => {
       ) : (
         <span className="container">
           <span className="row">
-            <span className="col-md-8 p-0">
+            <span className="col-md-8 p-0" id="tag-container">
               <AgChartsReact options={options} />
             </span>
             <span className="col-md-4 p-0">

@@ -22,14 +22,14 @@
     color: white;
 }
 
-#detail-type {
+/* #detail-type {
     height: 90vh;
     overflow-y: auto;
-}
+} */
 
 #select-date {
     z-index: 9;
-    position: absolute;
+    text-align: center;
     left: 50%;
     top: 0;
     margin: 2% 2% 0 0;
@@ -52,4 +52,8 @@
 
 #select-date-text {
     font-weight: bold;
+}
+
+#tag-container{
+    height: 80vh;
 }
