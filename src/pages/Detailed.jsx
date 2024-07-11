@@ -1,9 +1,9 @@
 import { useState } from "react";
 import "./styles/Detailed.css";
 import ChartMain from "./ChartMain";
-import Line from "./components/charts/Detailed/Line";
-import Pie from "./components/charts/Detailed/Pie";
-import Bar from "./components/charts/Detailed/Bar";
+import Line from "../components/charts/Detailed/Line";
+import Pie from "../components/charts/Detailed/Pie";
+import Bar from "../components/charts/Detailed/Bar";
 
 const Detailed = () => {
   const [detailsData, setDetailsData] = useState(null);
@@ -87,7 +87,7 @@ const Detailed = () => {
       <button id="close_button" type="button" className="btn" onClick={retractWindow}>
         Close
       </button>
-      <div className="container-fluid">
+      <div className="container-fluid" id="">
         <div className="row" id="all-charts-section">
           <div
             className="col-md-4"

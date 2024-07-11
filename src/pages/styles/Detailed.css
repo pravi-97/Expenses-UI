@@ -1,0 +1,31 @@
+#all-charts-section .container {
+    height: 100vh;
+}
+#detailed-section label {
+  color: white !important;
+}
+.blur {
+  filter: blur(5px);
+}
+
+#close_button {
+  position: fixed;
+  top: 0;
+  right: 0;
+  display: none;
+  z-index: 50;
+  color: black;
+  background-color: white;
+}
+
+#contact-section label{
+    font-weight: bold;
+}
+
+#detailed-section input {
+    color: black;
+}
+
+#detailed-section input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(0) !important;
+}

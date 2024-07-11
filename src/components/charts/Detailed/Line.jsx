@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { AgChartsReact } from "ag-charts-react";
 import { useAuth0 } from "@auth0/auth0-react";
-import Loader from "/src/Loader";
+import Loader from "/src/pages/Loader";
 
 const Line = ({ formData }) => {
   const { user } = useAuth0();
