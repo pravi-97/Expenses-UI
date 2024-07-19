@@ -43,7 +43,7 @@ const Month = () => {
   });
   return (
     <div>
-      {isLoading ? <div><Loader /></div> : (<div className="container">
+      {isLoading ? <div><Loader /></div> : (<div className="container" style={{height:"100vh"}}>
         <AgChartsReact options={options}/>
       </div>)}
     </div>

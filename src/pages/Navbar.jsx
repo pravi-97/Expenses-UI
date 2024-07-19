@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import AuthLogout from "./components/AuthLogout";
+import AuthLogout from "../components/AuthLogout";
 import { useAuth0 } from "@auth0/auth0-react";
 import './styles/Navbar.css'
 

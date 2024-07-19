@@ -1,0 +1,86 @@
+.budgets-heading {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+#add-new-budget{
+  height: 100%;
+  padding-bottom: 5%;
+}
+#add-budget-form {
+  margin: 0 auto;
+}
+
+.input-section {
+  margin-bottom: 20px;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 5px;
+  color: #fff;
+}
+
+.form-input {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  color: #000;
+}
+
+.radio-group {
+  display: flex;
+  align-items: center;
+  margin-right: 20px;
+}
+
+.radio-group label {
+  margin-right: 5px;
+}
+
+textarea.form-input {
+  height: 100px;
+  resize: vertical;
+}
+
+.input-section option{
+    color: #000;
+}
+
+.make-it-small{
+  font-size: 12px;
+}
+
+.form-submit-button{
+  background-color: #fff;
+  color: #000;
+  border-radius: 7px;
+  border: 2px solid white;
+  padding: 8px;
+  transition: 0.5s;
+}
+
+.form-submit-button:hover{
+background-color: black;
+color: #fff;
+}
+
+#list-budgets{
+  height: 90vh;
+  overflow-y: scroll;
+}
+#list-budgets div{
+  font-size: 0.95em;
+}
+
+.paint-it-red{
+  color: red;
+}
+.paint-it-yellow{
+  color: yellow;
+}
+.paint-it-green{
+  color: green;
+}

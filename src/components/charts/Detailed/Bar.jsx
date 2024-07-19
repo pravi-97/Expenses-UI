@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { AgChartsReact } from "ag-charts-react";
 import { useAuth0 } from "@auth0/auth0-react";
-import Loader from "/src/Loader";
+import Loader from "/src/pages/Loader";
 import axios from "axios";
 const Bar = ({ formData }) => {
   const API_URL = import.meta.env.VITE_API_URL;

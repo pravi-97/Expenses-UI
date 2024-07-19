@@ -9,6 +9,7 @@ import Tag from "./Tag";
 import Detailed from "./Detailed";
 import Error from "./Error";
 import Welcome from "./Welcome";
+import Budgets from "./Budgets";
 import Loader from "./Loader";
 import "./styles/App.css";
 import Help from "./Help";
@@ -43,6 +44,7 @@ function App() {
         <Route path="/month" element={<Month />} />
         <Route path="/tag" element={<Tag />} />
         <Route path="/detailed" element={<Detailed />} />
+        <Route path="/budgets" element={<Budgets/>} />
         <Route path="/help" element={<Help/>} />
         <Route path="/" element={<Home />} />
         <Route path="/*" element={<Error />} />

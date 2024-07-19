@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useAuth0 } from "@auth0/auth0-react";
-import { useNavigate } from "react-router-dom";
 import "./styles/Add.css";
 
 const Add = () => {
@@ -14,8 +13,6 @@ const Add = () => {
 
     return `${year}-${month}-${day}`;
   };
-
-  const history = useNavigate();
 
   const [formData, setFormData] = useState({
     date: getTodaysDate(),

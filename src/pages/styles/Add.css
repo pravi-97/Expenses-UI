@@ -1,4 +1,4 @@
-.form-container {
+#contact-section .form-container {
     max-width: 400px;
     margin: 0 auto;
     padding: 20px;
@@ -8,26 +8,26 @@
     background-color: #cccccc;
     color: black;
 }
-label{
+#contact-section label{
     color: #000 !important;
 }
 
-.form {
+#contact-section .form {
     display: grid;
     gap: 10px;
 }
 
-.form-group {
+#contact-section .form-group {
     display: grid;
     gap: 5px;
 }
 
-label {
+#contact-section label {
     font-weight: bold;
 }
 
-input,
-textarea {
+#contact-section input,
+#contact-section textarea {
     width: 100%;
     padding: 8px;
     border: 1px solid #ccc;
@@ -36,12 +36,12 @@ textarea {
     text-align: start;
 }
 
-input[type="date"]::-webkit-calendar-picker-indicator {
+#contact-section input[type="date"]::-webkit-calendar-picker-indicator {
     filter: invert(1);
 }
 
-.submit-button,
-.submit-button-disabled {
+#contact-section .submit-button,
+#contact-section .submit-button-disabled {
     background-color: #030303;
     color: #fff;
     border: none;
@@ -51,26 +51,26 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     transition: 0.3s;
 }
 
-.submit-button:hover {
+#contact-section .submit-button:hover {
     background-color: rgba(0, 0, 0, 0.247);
     color: #000;
     box-shadow: inset 0 0 0 3px black;
 }
 
-.submit-button-disabled {
+#contact-section .submit-button-disabled {
     background-color: rgba(0, 0, 0, 0.247);
     cursor: auto;
     color: #000;
 }
 
-#error-alert {
+#contact-section #error-alert {
     text-align: center;
     visibility: hidden;
     color: red;
     transition: 1s;
 }
 
-#form-submit-error p {
+#contact-section#form-submit-error p {
     text-align: center;
 }
 
@@ -84,18 +84,18 @@ input[type="date"]::-webkit-calendar-picker-indicator {
         transform: translate(0, 0);
     }
 
-    #form-submit-error {
+    #contact-section #form-submit-error {
         margin: 0px 50px 0px 50px;
     }
 
-    #form-submit-error p {
+    #contact-section #form-submit-error p {
         font-size: smaller !important;
         margin-bottom: 0;
     }
 }
 
 @media (max-width: 991px) {
-    .container-fluid {
+    #contact-section .container-fluid {
         margin-bottom: 5%;
     }
 }
