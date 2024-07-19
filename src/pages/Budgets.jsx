@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useAuth0 } from "@auth0/auth0-react";
+import Loader from "./Loader";
 import "./styles/Budgets.css";
 
 const Budgets = () => {
@@ -44,6 +45,7 @@ const Budgets = () => {
   }, []);
 
   useEffect(() => {
+    setIsLoading(true);
     axios
       .get(
         `${API_URL}budgets/getbudgetdetails?userid=${user.sub.replace(
@@ -52,11 +54,13 @@ const Budgets = () => {
         )}`
       )
       .then((response) => {
-        console.log(response.data);
         setBudgetDetails(response.data);
       })
       .catch((error) => {
         console.error(error);
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
   }, [addNewCount]);
 
@@ -77,7 +81,6 @@ const Budgets = () => {
       formData.budgetName != "" &&
       formData.period != ""
     ) {
-      console.log("formData: ", formData);
       axios
         .post(`${import.meta.env.VITE_API_URL}budgets/addbudget`, formData)
         .then((response) => {
@@ -98,11 +101,14 @@ const Budgets = () => {
     }
   };
 
+  if (isLoading) {
+    return <Loader />;
+  }
   return (
     <div id="budgets-container">
       <div className="container">
         <div className="row">
-          <div className="col-md-3">
+          <div className="col-md-3" id="add-new-budget">
             <div className="budgets-heading">Add New Budget</div>
             <form id="add-budget-form" onSubmit={handleSubmit}>
               <span className="input-section">
@@ -116,6 +122,7 @@ const Budgets = () => {
                   className="form-input"
                   value={formData.budgetName}
                   onChange={handleInputChange}
+                  maxLength={50}
                 />
               </span>
               <span className="input-section">
@@ -189,6 +196,7 @@ const Budgets = () => {
                   className="form-input"
                   value={formData.note}
                   onChange={handleInputChange}
+                  maxLength={250}
                 />
               </span>
               <div className="make-it-small">* Mandatory fields</div>
@@ -199,31 +207,58 @@ const Budgets = () => {
           </div>
           <div className="col-md-9">
             <div id="list-budgets">
-              <div className="budgets-heading">Existing Budgets</div>
+              <span className="budgets-heading">Existing Budgets</span>
               {Array.isArray(budgetDetails) && budgetDetails.length > 0 ? (
                 budgetDetails.map((budget, index) => (
                   <div key={index} className="container">
+                    <hr />
                     <div className="row">
-                      <div className="col-md-4">Budget Name: {budget.budgetName}</div>
-                      <div className="col-md-4">Budget Category: {budget.budgetCategory}</div>
-                      <div className="col-md-4">Period: {budget.budgetPeriod}</div>
+                      <div className="col-md-6">
+                        Budget Name: {budget.budgetName}
+                      </div>
+                      <div className="col-md-3">
+                        Budget Category: {budget.budgetCategory === "" ? "Overall" : budget.budgetCategory}
+                      </div>
+                      <div className="col-md-3">
+                        Period: {budget.budgetPeriod}
+                      </div>
                     </div>
                     <div className="row">
                       <div className="col-md-1">Notes:</div>
-                      <div className="col-md-11">
-                        {budget.budgetNote}
-                      </div>
+                      <div className="col-md-11">{budget.budgetNote}</div>
                     </div>
                     <div className="row">
-                      <div id="budget-status-message">
-                        10% of allocated budget spent for the month July 2024
+                      <div
+                        id="budget-status-message"
+                        className={`${
+                          (
+                            (budget.actualExpense / budget.budgetAmount) *
+                            100
+                          ).toFixed(2) > 99
+                            ? "paint-it-red"
+                            : (
+                                (budget.actualExpense / budget.budgetAmount) *
+                                100
+                              ).toFixed(2) > 50
+                            ? "paint-it-yellow"
+                            : "paint-it-green"
+                        }`}
+                      >
+                        {(
+                          (budget.actualExpense / budget.budgetAmount) *
+                          100
+                        ).toFixed(2)}
+                        % of allocated budget spent for the month July 2024
                       </div>
-                      <div>Budget Allocated: &nbsp;&nbsp; {budget.budgetAmount}</div>
                       <div>
-                        Spent Amount:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; {budget.actualExpense}
+                        Budget Allocated: &nbsp;&nbsp; {budget.budgetAmount}
+                      </div>
+                      <div>
+                        Spent Amount:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{" "}
+                        {budget.actualExpense}
                       </div>
                     </div>
-                    <br/>
+                    <br />
                   </div>
                 ))
               ) : (
