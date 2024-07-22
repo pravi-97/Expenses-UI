@@ -1,0 +1,9 @@
+#budget-details-section{
+    position: absolute;
+    z-index: 100;
+    background-color: red;
+    height: 90vh;
+    width: 100%;
+    left: 99%;
+    transition: 1s;
+}

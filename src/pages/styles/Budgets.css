@@ -1,3 +1,6 @@
+#budgets-container{
+  overflow: hidden !important;
+}
 .budgets-heading {
   font-size: 24px;
   font-weight: bold;

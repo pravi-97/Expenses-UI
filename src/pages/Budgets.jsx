@@ -3,6 +3,7 @@ import axios from "axios";
 import { useAuth0 } from "@auth0/auth0-react";
 import Loader from "./Loader";
 import "./styles/Budgets.css";
+import BudgetDetails from "./BudgetDetails";
 
 const Budgets = () => {
   const { user } = useAuth0();
@@ -18,10 +19,15 @@ const Budgets = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [addNewCount, setAddNewCount] = useState(0);
   const [budgetDetails, setBudgetDetails] = useState([]);
+  const [details, setDetails] = useState({
+    budgetCategory : "",
+    budgetPeriod: "",
+    userid: ""
+  });
   const API_URL = import.meta.env.VITE_API_URL;
   useEffect(() => {
     axios
-      .get(`${API_URL}budgets/getcategory`)
+      .get(`${API_URL}budgets/getcategory?userid=${user.sub.replace("auth0|", "")}`)
       .then((response) => {
         setOptions(response.data);
         setAddNewCount(addNewCount + 1);
@@ -99,6 +105,12 @@ const Budgets = () => {
     } else {
       alert("* Fields are Mandatory!");
     }
+  };
+
+  const displayDetails = (value) => {
+    console.log(budgetDetails[value]);
+    setDetails(budgetDetails[value]);
+    document.getElementById("budget-details-section").style.left = "0%";
   };
 
   if (isLoading) {
@@ -210,14 +222,21 @@ const Budgets = () => {
               <span className="budgets-heading">Existing Budgets</span>
               {Array.isArray(budgetDetails) && budgetDetails.length > 0 ? (
                 budgetDetails.map((budget, index) => (
-                  <div key={index} className="container">
+                  <div
+                    key={index}
+                    className="container individual-budget"
+                    onClick={dummy => displayDetails(index)}
+                  >
                     <hr />
                     <div className="row">
                       <div className="col-md-6">
                         Budget Name: {budget.budgetName}
                       </div>
                       <div className="col-md-3">
-                        Budget Category: {budget.budgetCategory === "" ? "Overall" : budget.budgetCategory}
+                        Budget Category:{" "}
+                        {budget.budgetCategory === ""
+                          ? "Overall"
+                          : budget.budgetCategory}
                       </div>
                       <div className="col-md-3">
                         Period: {budget.budgetPeriod}
@@ -248,7 +267,10 @@ const Budgets = () => {
                           (budget.actualExpense / budget.budgetAmount) *
                           100
                         ).toFixed(2)}
-                        % of allocated budget spent for the month July 2024
+                        % of allocated budget spent for the{" "}
+                        {budget.budgetPeriod == "monthly"
+                          ? "month July 2024"
+                          : "year 2024"}
                       </div>
                       <div>
                         Budget Allocated: &nbsp;&nbsp; {budget.budgetAmount}
@@ -266,6 +288,7 @@ const Budgets = () => {
               )}
             </div>
           </div>
+          <BudgetDetails details={details} />
         </div>
       </div>
     </div>
