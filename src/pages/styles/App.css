@@ -13,3 +13,20 @@
     margin: 0;
     padding: 0;
 }
+
+.custom-tooltip {
+    background-color: #fff;
+    /* border: 1px solid #ccc; */
+    /* padding: 10px; */
+}
+
+.custom-tooltip .line_1 {
+    color: black;
+    padding: 5px;
+}
+
+.custom-tooltip .line_2 {
+    color: black;
+    padding: 0px;
+    text-align: center;
+}
